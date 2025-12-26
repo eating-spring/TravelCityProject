@@ -2,7 +2,7 @@ import './App.css';
 import './assets/css/signupForm.css'
 import { useState } from "react"
 import CryptoJS from 'crypto-js';
-// import axios from 'axios'
+import axios from 'axios'
 
 function App() {
   // 1. 입력값을 관리하는 State 정의
@@ -29,7 +29,7 @@ function App() {
   };
 
   // 3. 폼 제출 시 실행되는 핸들러
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // 페이지 새로고침 방지
     
     // 유효성 검사 예시 (필요시 추가 구현)
@@ -38,9 +38,8 @@ function App() {
       return;
     }
 
-    const pwize_pwd = CryptoJS.SHA512(formData.password).toString(CryptoJS.enc.Base64)
-    //const pwize_email = CryptoJS.SHA512(formData.email).toString(CryptoJS.enc.Base64)
-
+    // 비밀번호 해싱 및 이메일 암호화
+    const pwize_pwd = CryptoJS.SHA512(formData.password).toString(CryptoJS.enc.Base64);
     const secretKey = "secret-email";
     const pwize_email = CryptoJS.AES.encrypt(formData.email, secretKey).toString();
     
@@ -52,7 +51,28 @@ function App() {
 
     // 실제로는 여기서 API 호출을 통해 서버로 데이터를 전송합니다.
     console.log('회원가입 데이터 전송:', formData);
-    alert(`환영합니다, ${formData.nickname}님! 회원가입 정보가 콘솔에 출력되었습니다.`);
+    //const userReg = () => {
+    const param = {
+      id : formData.id,
+      nickname : formData.nickname,
+      password : pwize_pwd,
+      email : pwize_email
+    }
+
+    try {
+      const response = await axios.get('/userReg', { params: param });
+
+      // 성공 로직
+      if (response.data.success) {
+        alert("회원가입이 완료되었습니다.");
+      } else {
+        alert("회원가입에 실패했습니다.");
+      }
+    } catch (error) {
+      console.error("에러 상세:", error); // 개발자 확인용
+      alert(error.response.data.message);
+    }
+    //alert(`환영합니다, ${formData.nickname}님! 회원가입 정보가 콘솔에 출력되었습니다.`);
   };
 
   return (
