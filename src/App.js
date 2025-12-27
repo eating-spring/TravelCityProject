@@ -1,142 +1,23 @@
-import './App.css';
-import './assets/css/signupForm.css'
-import { useState } from "react"
-import CryptoJS from 'crypto-js';
-import axios from 'axios'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import COUJ1001 from './page/CO/UJ/COUJ1001';
+import COUL1001 from './page/CO/UL/COUL1001';
+import MECO1001 from './page/ME/CO/MECO1001';
 
 function App() {
-  // 1. 입력값을 관리하는 State 정의
-  const [formData, setFormData] = useState({
-    id: '',
-    nickname: '',
-    password: '',
-    email: ''
-  });
-
-  // const getMemList = () => {
-  //   axios.get('/members').then(response => {
-  //     setuData(response.data);  //JSON.stringify(reponse.data, null, 2)
-  //   });
-  // }
-
-  // 2. 입력값이 변경될 때 실행되는 핸들러
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value // name 속성값을 키로 사용하여 값 업데이트
-    });
-  };
-
-  // 3. 폼 제출 시 실행되는 핸들러
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // 페이지 새로고침 방지
-    
-    // 유효성 검사 예시 (필요시 추가 구현)
-    if (!formData.id || !formData.password) {
-      alert("아이디와 비밀번호는 필수입니다.");
-      return;
-    }
-
-    // 비밀번호 해싱 및 이메일 암호화
-    const pwize_pwd = CryptoJS.SHA512(formData.password).toString(CryptoJS.enc.Base64);
-    const secretKey = "secret-email";
-    const pwize_email = CryptoJS.AES.encrypt(formData.email, secretKey).toString();
-    
-    console.log("@@@ 비밀번호 =>", formData.password, "|", pwize_pwd);
-    console.log("@@@ 이메일 =>", formData.email, "|", pwize_email);
-
-    // const bytes = CryptoJS.AES.decrypt(pwize_email, secretKey);
-    // const decrypted = bytes.toString(CryptoJS.enc.Utf8);
-
-    // 실제로는 여기서 API 호출을 통해 서버로 데이터를 전송합니다.
-    console.log('회원가입 데이터 전송:', formData);
-    //const userReg = () => {
-    const param = {
-      id : formData.id,
-      nickname : formData.nickname,
-      password : pwize_pwd,
-      email : pwize_email
-    }
-
-    try {
-      const response = await axios.get('/userReg', { params: param });
-
-      // 성공 로직
-      if (response.data.success) {
-        alert("회원가입이 완료되었습니다.");
-      } else {
-        alert("회원가입에 실패했습니다.");
-      }
-    } catch (error) {
-      console.error("에러 상세:", error); // 개발자 확인용
-      alert(error.response.data.message);
-    }
-    //alert(`환영합니다, ${formData.nickname}님! 회원가입 정보가 콘솔에 출력되었습니다.`);
-  };
-
   return (
-    <div className="signup-container">
-      <h2>회원가입</h2>
-      <form onSubmit={handleSubmit} className="signup-form">
+    <BrowserRouter>
+      <Routes>
+        {/* 기본 주소(/) 접속 시 로그인 화면 표시 */}
+        <Route path="/" element={<COUL1001 />} />
+
+        {/* /CO/UJ/COUJ1001 주소 접속 시 회원가입 화면 표시 */}
+        <Route path="/CO/UJ/COUJ1001" element={<COUJ1001 />} />
         
-        {/* 아이디 입력 */}
-        <div className="form-group">
-          <label htmlFor="id">아이디</label>
-          <input
-            type="text"
-            id="id"
-            name="id"
-            value={formData.id}
-            onChange={handleChange}
-            placeholder="아이디를 입력하세요"
-            required
-          />
-        </div>
-
-        {/* 닉네임 입력 */}
-        <div className="form-group">
-          <label htmlFor="nickname">닉네임</label>
-          <input
-            type="text"
-            id="nickname"
-            name="nickname"
-            value={formData.nickname}
-            onChange={handleChange}
-            placeholder="닉네임을 입력하세요"
-          />
-        </div>
-
-        {/* 비밀번호 입력 */}
-        <div className="form-group">
-          <label htmlFor="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="비밀번호를 입력하세요"
-            required
-          />
-        </div>
-
-        {/* 이메일 입력 */}
-        <div className="form-group">
-          <label htmlFor="email">이메일</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="example@email.com"
-          />
-        </div>
-
-        <button type="submit" className="submit-btn">가입하기</button>
-      </form>
-    </div>
+        {/* /ME/CO/MECO1001 주소 접속 시 메모장 화면 표시 */}
+        <Route path="/ME/CO/MECO1001" element={<MECO1001 />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

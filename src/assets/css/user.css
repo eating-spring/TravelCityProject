@@ -1,0 +1,194 @@
+.signup-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+}
+
+.signup-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 회원가입 유도 영역 */
+.signup-box {
+  margin-top: 30px;
+  text-align: center;
+  border-top: 1px solid #eee; /* 위쪽 구분선 */
+  padding-top: 20px;
+}
+
+.signup-text {
+  color: #888;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+/* 회원가입 버튼 (강조용 텍스트 버튼 스타일) */
+.signup-btn {
+  background: none;
+  border: none;
+  color: #007bff; /* 포인트 컬러 */
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.signup-btn:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.submit-btn {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Login.css */
+
+/* 화면 중앙 정렬을 위한 래퍼 */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f7fa;
+}
+
+/* 로그인 박스 메인 컨테이너 */
+.login-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px; /* 너무 넓어지지 않게 제한 */
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 24px;
+}
+
+/* 입력 그룹 스타일 */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* padding이 너비에 포함되도록 */
+  font-size: 16px;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* 로그인 버튼 */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* 아이디/비번 찾기 영역 */
+.find-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* 버튼 사이 간격 */
+  font-size: 14px;
+  color: #666;
+}
+
+/* 링크처럼 보이는 버튼 스타일 */
+.find-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.find-btn:hover {
+  color: #007bff;
+}
+
+/* 구분선 */
+.separator {
+  color: #ccc;
+}
