@@ -1,78 +1,173 @@
-.group-list-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  font-family: sans-serif;
+/* 1. 전체 배경 wrapper */
+.group-list-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  padding: 40px 20px; /* 상하 40px, 좌우 20px 여백 */
+  box-sizing: border-box; /* 패딩 포함 크기 계산 */
 }
 
+/* 2. 메인 컨테이너 (반응형 적용) */
+.group-list-container {
+  width: 100%;             /* 기본적으로 부모의 100%를 차지 */
+  max-width: 800px;        /* 너무 넓어지는 것 방지 (원하시면 1000px 등으로 늘리셔도 됩니다) */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;           /* 내부 여백 */
+  box-sizing: border-box;
+}
+
+/* 헤더 영역 */
 .group-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid lightgray;
 }
 
 .header-title {
   margin: 0;
-  font-size: 18px;
+  font-size: 22px; /* 모바일을 위해 폰트 사이즈 조정 */
   font-weight: bold;
+  color: #333;
 }
 
 .create-btn {
-  padding: 6px 12px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
   font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  background-color: white;
-  border: 1px solid black;
+  white-space: nowrap; /* 버튼 글자가 줄바꿈되지 않도록 */
+  transition: background-color 0.2s;
 }
 
+.create-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 리스트 박스 */
 .list-box {
-  border: 1px solid black;
-  min-height: 300px;
-  padding: 0;
-  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
+/* 3. 그룹 아이템 (핵심: Flexbox 활용) */
 .group-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 양 끝 정렬 */
   align-items: center;
-  padding: 15px 20px;
-  border-bottom: 1px solid #eee;
+  padding: 15px;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: all 0.2s;
 }
 
+.group-item:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+  transform: translateY(-2px); /* 살짝 떠오르는 효과 */
+}
+
+/* 제목 영역 (말줄임표 처리) */
 .group-title {
   font-size: 16px;
-  font-weight: 500;
-  text-decoration: underline;
-  text-decoration-color: red;
-  text-underline-offset: 3px;
+  font-weight: bold;
+  color: #555;
+  
+  /* 긴 제목 대응 */
+  flex: 1;               /* 남은 공간을 모두 차지 */
+  margin-right: 15px;    /* 오른쪽 버튼 영역과 간격 */
+  white-space: nowrap;   /* 한 줄로 표시 */
+  overflow: hidden;      /* 넘치는 글자 숨김 */
+  text-overflow: ellipsis; /* ... 으로 표시 */
 }
 
+/* 우측 정보 영역 (인원수 + 버튼) */
 .group-info-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex; /* 플렉스 컨테이너 */
+  align-items: center; /* 수직 중앙 정렬 */
+  gap: 10px; /* 요소 간 간격 */
+  flex-shrink: 0; /* 축소 방지 */
+  min-height: 32px; /* 최소 높이 설정 */
 }
 
 .member-count {
-  margin-right: 10px;
   font-size: 14px;
+  color: #888;
+  white-space: nowrap; /* 줄바꿈 방지 */
 }
 
 .action-btn {
-  padding: 5px 10px;
+  padding: 6px 12px;
+  background-color: white;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #555;
   font-size: 13px;
   cursor: pointer;
-  background-color: white;
-  border: 1px solid #ccc;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  border-color: #007bff;
+  color: #007bff;
+  background-color: #f0f8ff;
 }
 
 .empty-state {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-  color: #888;
-  font-size: 16px;
+  text-align: center;
+  padding: 60px 0;
+  color: #999;
+}
+
+/* =========================================
+   4. 반응형 미디어 쿼리 (모바일 화면 대응)
+   화면 너비가 768px 이하일 때 적용
+   ========================================= */
+@media screen and (max-width: 768px) {
+  .group-list-wrapper {
+    padding: 20px 10px; /* 좌우 여백을 줄임 */
+  }
+
+  .group-list-container {
+    padding: 20px; /* 내부 여백 줄임 */
+  }
+
+  .header-title {
+    font-size: 18px;
+  }
+
+  /* 그룹 아이템을 세로로 배치 */
+  .group-item {
+    flex-direction: column; /* 세로 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+    gap: 10px; /* 제목과 버튼 사이 간격 추가 */
+  }
+
+  .group-title {
+    width: 100%; /* 전체 너비 사용 */
+    margin-right: 0;
+    margin-bottom: 5px;
+    white-space: normal; /* 모바일에서는 두 줄 이상 나와도 괜찮음 (원하면 nowrap 유지) */
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  /* 우측 정보 영역을 하단 전체로 확장하여 정렬 */
+  .group-info-right {
+    width: 100%;
+    justify-content: space-between; /* 인원수는 왼쪽, 버튼은 오른쪽 */
+  }
 }

@@ -14,9 +14,7 @@ function COUL1001() {
   const navigate = useNavigate(); // 2. navigate 함수 생성
 
   const handleChange = (e) => {
-    console.log(e.target);
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({
       ...formData,
       [name]: value // name 속성값을 키로 사용하여 값 업데이트
@@ -45,7 +43,7 @@ function COUL1001() {
 
       // 성공 로직
       if (response.data.success) {
-        navigate('/GR/ME/GRME1001'); // App.js에 설정한 Route path의 경로를 호출해야 함
+        navigate('/GR/CO/GRCO1001'); // App.js에 설정한 Route path의 경로를 호출해야 함
       } else {
         alert("로그인에 실패했습니다.");
       }
