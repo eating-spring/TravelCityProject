@@ -1,8 +1,8 @@
 import 'assets/css/user.css'
 import { useState } from "react"
-import CryptoJS from 'crypto-js';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import CryptoJS from 'crypto-js';
+import { callApi } from 'common/axiosBuilder';
 
 function COUJ1001() {
   // 1. 입력값을 관리하는 State 정의
@@ -62,12 +62,13 @@ function COUJ1001() {
     }
 
     try {
-      const response = await axios.get('/userReg', { params: param });
+      const response = await callApi('/userReg', 'post', param);
+      console.log("회원가입:", response);
 
       // 성공 로직
-      if (response.data.success) {
+      if (response.success) {
         alert("회원가입이 완료되었습니다.");
-        navigate("/");
+        navigate('/');
       } else {
         alert("회원가입에 실패했습니다.");
       }
