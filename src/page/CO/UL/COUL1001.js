@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../../assets/css/user.css'
+import 'assets/css/user.css'
 import CryptoJS from 'crypto-js';
-import axios from 'axios'
+import { callApi } from 'common/axiosBuilder';
 
 function COUL1001() {
   // 1. 입력값을 관리하는 State 정의
@@ -39,10 +39,10 @@ function COUL1001() {
     }
 
     try {
-      const response = await axios.get('/userLogin', { params: param });
+      const response = await callApi('/userLogin', 'post', param);
 
       // 성공 로직
-      if (response.data.success) {
+      if (response.success) {
         navigate('/GR/CO/GRCO1001'); // App.js에 설정한 Route path의 경로를 호출해야 함
       } else {
         alert("로그인에 실패했습니다.");
