@@ -45,7 +45,7 @@ function COUL1001() {
 
       // 성공 로직
       if (response.data.success) {
-        navigate('/ME/CO/MECO1001'); // App.js에 설정한 Route path의 경로를 호출해야 함
+        navigate('/GR/ME/GRME1001'); // App.js에 설정한 Route path의 경로를 호출해야 함
       } else {
         alert("로그인에 실패했습니다.");
       }

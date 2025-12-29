@@ -1,0 +1,78 @@
+.group-list-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+.group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.create-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.list-box {
+  border: 1px solid black;
+  min-height: 300px;
+  padding: 0;
+  background-color: #fff;
+}
+
+.group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.group-title {
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: red;
+  text-underline-offset: 3px;
+}
+
+.group-info-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.member-count {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.action-btn {
+  padding: 5px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  color: #888;
+  font-size: 16px;
+}
