@@ -68,7 +68,7 @@ function COUL1001() {
 
   // 회원가입 페이지로 이동 함수
   const handleSignUp = () => {
-    navigate('/CO'); // App.js에 설정된 회원가입 경로로 이동
+    navigate('/CO/UJ/COUJ1001'); // App.js에 설정된 회원가입 경로로 이동
   };
 
   return (
