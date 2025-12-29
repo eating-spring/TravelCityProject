@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../../assets/css/memo.css'
+import 'assets/css/memo.css'
 
 function MECO1001() {
   // 1. 메모 리스트 상태 (각 메모는 { id, text } 형태의 객체)

@@ -1,6 +1,7 @@
-import '../../../assets/css/user.css'
+import 'assets/css/user.css'
 import { useState } from "react"
 import CryptoJS from 'crypto-js';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 function COUJ1001() {
@@ -11,6 +12,8 @@ function COUJ1001() {
     password: '',
     email: ''
   });
+
+  const navigate = useNavigate(); // 2. navigate 함수 생성
 
   // const getMemList = () => {
   //   axios.get('/members').then(response => {
@@ -64,6 +67,7 @@ function COUJ1001() {
       // 성공 로직
       if (response.data.success) {
         alert("회원가입이 완료되었습니다.");
+        navigate("/");
       } else {
         alert("회원가입에 실패했습니다.");
       }
